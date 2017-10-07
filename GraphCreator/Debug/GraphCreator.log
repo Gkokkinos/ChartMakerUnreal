@@ -1,0 +1,3 @@
+﻿  MyForm.cpp
+MyForm.cpp(34): warning C4018: '<': signed/unsigned mismatch
+  GraphCreator.vcxproj -> C:\Users\lalai\Documents\Visual Studio 2015\Projects\GraphCreator\Debug\GraphCreator.exe
