@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <sstream>
+#include <fstream> 
+#include <iostream>
 
 namespace GraphCreator {
 
@@ -249,22 +252,26 @@ namespace GraphCreator {
 	private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 		//set label name
 		this->label1->Text = this->textBox1->Text;
-		//clear arrays
-		time.clear();
-		frame.clear();
-		gt.clear();
-		rt.clear();
-		gpu.clear();
-		content.clear();
-		//re create from new loaded csv
-		createArrays(time, frame, gt, rt, gpu, content, tempNormal);
-		//redraw
-		if(clickedF)
-			clickedF = drawPoints(frame, clickedF, framerateMS);
-		if (clickedG)
-			clickedG = drawPoints(gt, clickedG, gameThreadMS);
-		if (clickedR)
-			clickedR = drawPoints(rt, clickedR, renderThreadMS);
+		std::ifstream file(tempNormal);
+		if (file.good())
+		{		
+			//clear arrays
+			time.clear();
+			frame.clear();
+			gt.clear();
+			rt.clear();
+			gpu.clear();
+			content.clear();
+			//re create from new loaded csv
+			createArrays(time, frame, gt, rt, gpu, content, tempNormal);
+			//redraw
+			if (clickedF)
+				clickedF = drawPoints(frame, clickedF, framerateMS);
+			if (clickedG)
+				clickedG = drawPoints(gt, clickedG, gameThreadMS);
+			if (clickedR)
+				clickedR = drawPoints(rt, clickedR, renderThreadMS);
+		}
 	}
 
 };
